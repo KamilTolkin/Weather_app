@@ -1,23 +1,40 @@
-let latitude;
-let longitude;
+let apiKey= "d73a9c6d15207cbcbf47a357b695f867"
+// let tempNum= document.getElementById("what_to_wear").innerHTML
 
-window.addEventListener("load", () => {
-  getLocation();
-});
+// function getWeather() {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
-      },
-      showError
-    );
-  } else {
-    console.log("Geolocation is not supported by this browser.");
-  }
-}
+    // Use latitude and longitude to get weather data from a weather API
+    var weatherApiUrl = 'https://api.openweathermap.org/data/2.5/weather?' +
+      'lat=' + latitude + '&lon=' + longitude + '&appid=' + apiKey;
+
+    fetch(weatherApiUrl)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(weatherData) {
+        // Log the weatherData to the console
+      console.log(weatherData);
+      let tempCel = Math.round((weatherData.main.temp - 273.15) * 10) / 10
+      document.getElementById("name").innerHTML= weatherData.name
+      document.getElementById("weather_current").innerHTML = weatherData.weather[0].main
+      document.getElementById("temp_current").innerHTML = tempCel + String.fromCharCode(176) + "C"
+      if (tempCel <= 0){
+        document.getElementById("what_to_wear").innerHTML = "Winter is coming/here"
+      }else if (tempCel > 0 && tempCel <= 10){
+        document.getElementById("what_to_wear").innerHTML = "Layer up, folks!"
+      }else if (tempCel > 10 && tempCel <= 15){
+        document.getElementById("what_to_wear").innerHTML = "A Jacket will do"
+      }else if (tempCel > 15 && tempCel <=17){
+        document.getElementById("what_to_wear").innerHTML = "Now it's time for everybody's favourite: the hoodie!"
+      }else {
+        document.getElementById("what_to_wear").innerHTML = "It's shorts season!"
+      }
+      });
+  }, showError);
+// }
 
 function showError(error) {
   switch (error.code) {
@@ -35,14 +52,3 @@ function showError(error) {
       break;
   }
 }
-
-fetch(
-  `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=d73a9c6d15207cbcbf47a357b695f867`
-)
-  .then((response) => response.json())
-  .then((data) => {
-    // Use the data returned from the API here
-  })
-  .catch((error) => {
-    console.error(error);
-  });
