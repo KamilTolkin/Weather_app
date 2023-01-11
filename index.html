@@ -1,18 +1,65 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Weather App</title>
-    <meta name="description" content="A simple weather app.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="A simple weather app." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <p>Here is the weather in <span id="name"></span></p>
-    <p id="weather_current"></p>
-    <p id="temp_current"></p>
-    <p id="what_to_wear"></p>
+    <img id="background" src="Backgrounds/Default.jpg""/>
+    <main>
+      <div class="grid">
+        <p id="name"></p>
+        <div id="today_info">
+          <p id="weather_current"></p>
+          <img id="weather_current_icon" class="icon" />
+          <p id="what_to_wear"></p>
+          <p id="temp_current"></p>
+        </div>
+        <section class="row">
+          <div id="tomorrow_info" class="row_div">
+            <p id="tomorrow_date"></p>
+            <p id="forecast_tomorrow"></p>
+            <img id="forecast_tomorrow_icon" class="icon" />
+            <p id="temp_tomorrow"></p>
+          </div>
+          <div id="2nd_info" class="row_div">
+            <p id="2nd_date"></p>
+            <p id="forecast_2nd_day"></p>
+            <img id="forecast_2nd_icon" class="icon" />
+            <p id="temp_2nd_day"></p>
+          </div>
+          <div id="3rd_info" class="row_div">
+            <p id="3rd_date"></p>
+            <p id="forecast_3rd_day"></p>
+            <img id="forecast_3rd_icon" class="icon" />
+            <p id="temp_3rd_day"></p>
+          </div>
+          <div id="4th_info" class="row_div">
+            <p id="4th_date"></p>
+            <p id="forecast_4th_day"></p>
+            <img id="forecast_4th_icon" class="icon" />
+            <p id="temp_4th_day"></p>
+          </div>
+          <div id="5th_info" class="row_div">
+            <p id="5th_date"></p>
+            <p id="forecast_5th_day"></p>
+            <img id="forecast_5th_icon" class="icon" />
+            <p id="temp_5th_day"></p>
+          </div>
+        </section>
+      </div>
+    </main>
     <script src="index.js" async defer></script>
+    <script src="UI.js"></script>
   </body>
 </html>
